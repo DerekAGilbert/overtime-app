@@ -6,6 +6,11 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
 
+# spec/rails_helper.rb
+
+include Warden::Test::Helpers
+Warden.test_mode!
+
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
