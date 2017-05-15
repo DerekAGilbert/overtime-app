@@ -11,7 +11,12 @@
   <td>
     <%= truncate(post.rationale) %>
   </td>
+
   <td>
-    <%= link_to 'Edit', edit_post_path(post), id: "edit_#{post.id}" %>
+    <%= link_to 'Edit', edit_post_path(post), id: "edit_#{post.id}", class: 'btn btn-block btn-primary'%>
+  </td>
+
+  <td>
+    <%= link_to 'Delete', post_path(post), method: :delete, id: "delete_post_#{post.id}_from_index", data: { confirm: 'Are you sure?' }, class: 'btn btn-block btn-warning' %>
   </td>
 </tr>
