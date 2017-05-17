@@ -16,3 +16,5 @@ x AdminUser -> STI
 
 ## UI:
 - Bootstrap -> formatting
+- Refactor posts/_form for admin user with status
+- fix post_spec 82 ish to use factories

@@ -74,25 +74,29 @@ end
 
   describe 'edit' do
     before do
-      @post = FactoryGirl.create(:post)
+      @edit_user = User.create(first_name: "asdf", last_name: "asdf", email: "asdfasdf@asdf.com", password: "asdfasdf", password_confirmation: "asdfasdf")
+      login_as(@edit_user, :scope => :user)
+      @edit_post = Post.create(date: Date.today, rationale: "asdf", user_id: @edit_user.id)
+    end
 
-      it 'can be reached by clicking edit on index page' do
+    it 'can be edited' do
+      visit edit_post_path(@edit_post)
 
-        visit posts_path
+      fill_in 'post[date]', with: Date.today
+      fill_in 'post[rationale]', with: "Edited content"
+      click_on "Save"
 
-        click_link("edit_#{@post.id}")
-        expect(page.status_code).to eq(200)
-      end
+      expect(page).to have_content("Edited content")
+    end
 
-      it 'can be edited' do
-        visit edit_post_path(@post)
+    it 'cannot be edited by a non authorized user' do
+      logout(:user)
+      non_authorized_user = FactoryGirl.create(:non_authorized_user)
+      login_as(non_authorized_user, :scope => :user)
 
-        fill_in 'post[date]', with: Date.today
-        fill_in 'post[rationale]', with: "Edited content"
-        click_on "Save"
+      visit edit_post_path(@edit_post)
 
-        expect(page).to have_content("Edited content")
-      end
+      expect(current_path).to eq(root_path)
     end
   end
 end
