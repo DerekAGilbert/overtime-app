@@ -16,7 +16,7 @@
   </td>
 
   <td>
-    <%= link_to 'Edit', edit_post_path(post), id: "edit_#{post.id}", class: 'btn btn-block btn-primary'%>
+    <%= link_to 'Edit', edit_post_path(post), id: "edit_#{post.id}", class: 'btn btn-block btn-primary' if policy(post).update? %>
   </td>
 
   <td>
