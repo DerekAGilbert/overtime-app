@@ -15,6 +15,12 @@ x AdminUser -> STI
 - Needs to be documented if employee did not log overtime
 
 ## UI:
-- Bootstrap -> formatting
-- Refactor posts/_form for admin user with status
-- fix post_spec 82 ish to use factories
+-  x Bootstrap -> formatting
+-  x icons from glyphicons
+-  x update styles for forms
+
+## TODOS:
+- Integrate validation for phone attr in User
+    # no spaces or dashes
+    # exactly 10 characters
+    # all characters have to be a number
