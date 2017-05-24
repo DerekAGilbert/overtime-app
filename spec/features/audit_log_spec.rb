@@ -20,9 +20,15 @@ describe 'AuditLog Fearture' do
        expect(page).to have_content(/SNOW/)
      end
 
-     xit ' cannot be accesed by non admin users' do
+       it ' cannot be accesed by non admin users' do
+        logout(:user)
+        user = FactoryGirl.create(:user)
+        login_as(user, :scope => :user)
+
+        visit audit_logs_path
+
+        expect(current_path).to eq(root_path)
 
      end
    end
-
-end
+ end
